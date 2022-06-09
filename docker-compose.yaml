@@ -1,12 +1,23 @@
-version: "3"
+version: '2'
 services:
-  db:
-    image: postgres:9.6
+
+  common_db:
+    image: postgres:10.4
+    restart: always
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgress
-      - POSTGRES_DB=postgres
-    ports:
-      - "5432:5432"
+      - POSTGRES_PASSWORD=postgres123
+      - POSTGRES_MULTIPLE_DATABASES=db1,db2
     volumes:
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
       - /media/mpcrpaul/data/postgres-imtxt:/var/lib/postgresql/data
+    ports:
+      - 5436:5432
+    networks:
+       - app-network
+
+volumes:
+  postgres-data:
+networks:
+  app-network:
+    driver: bridge`
