@@ -12,5 +12,5 @@ services:
       - pgdata:/var/lib/postgresql/data
     networks:
       - suruse
-volumes: 
+volumes:  
   pgdata:
