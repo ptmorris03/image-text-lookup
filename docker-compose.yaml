@@ -12,7 +12,7 @@ services:
       - ./db.sql:/docker-entrypoint-initdb.d/db.sql
       - /media/mpcrpaul/data/postgres-imtxt:/var/lib/postgresql/data
     ports:
-      - 5436:5432
+      - 5432:5432
     networks:
        - app-network
 
