@@ -20,4 +20,4 @@ volumes:
   postgres-data:
 networks:
   app-network:
-    driver: bridge`
+    driver: bridge
