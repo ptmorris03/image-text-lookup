@@ -26,7 +26,7 @@ def main(
     #result = insert_comments(db, comments)
 
     reader = zreader.Zreader(file)
-    for line in reader.read():
+    for line in reader.readlines():
         obj = json.loads(line)
         print(obj)
         break
