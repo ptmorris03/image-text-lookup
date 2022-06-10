@@ -1,4 +1,4 @@
 pymongo
 tqdm
 typer
-git+https://github.com/pushshift/zreader.git@48626c3#egg=zreader
+git+https://github.com/pushshift/zreader.git@48626c3
