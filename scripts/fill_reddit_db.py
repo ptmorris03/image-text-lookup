@@ -29,18 +29,22 @@ def insert_comments(db, comments):
 def main(
     file: Path,
     host: str = "localhost", 
-    port: int = 27017):
-    #client = MongoClient(F"{host}:{port}")
-    #db = client.reddit
+    port: int = 27017,
+    batch: int = 500):
+    client = MongoClient(F"{host}:{port}")
+    db = client.reddit
 
-    #result = insert_comments(db, comments)
+    result = insert_comments(db, comments)
 
+    comments = []
     reader = zreader.Zreader(file)
-    for line in reader.readlines():
-        obj = json.loads(line)
-        print(filter_comment(obj))
-        print(parse_comment(obj))
-        break
+    for line in tqdm(reader.readlines()):
+        comment = json.loads(line)
+        comments.append(comment)
+
+        if len(comments) == batch:
+            result = insert_comments(db, comments)
+            comments = []
 
 if __name__ == "__main__":
     typer.run(main)
