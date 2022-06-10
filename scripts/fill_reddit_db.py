@@ -30,11 +30,10 @@ def main(
     file: Path,
     host: str = "localhost", 
     port: int = 27017,
-    batch: int = 500):
+    batch: int = 500
+    ):
     client = MongoClient(F"{host}:{port}")
     db = client.reddit
-
-    result = insert_comments(db, comments)
 
     comments = []
     reader = zreader.Zreader(file)
