@@ -1,23 +1,14 @@
-version: '2'
+version: '3.9'
 services:
-
-  common_db:
-    image: postgres:14
+  mongodb:
+    image: mongo:latest
     restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres123
-      - POSTGRES_MULTIPLE_DATABASES=db1,db2
     volumes:
-      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
-      - /media/mpcrpaul/data/postgres-imtxt:/var/lib/postgresql/data
+      - /media/mpcrpaul/data/mongo-reddit:/data/db
     ports:
-      - 5432:5432
+      - 27017:27017
     networks:
-       - app-network
+       - mongo-network
 
-volumes:
-  postgres-data:
 networks:
-  app-network:
-    driver: bridge
+  mongo-network: {}
