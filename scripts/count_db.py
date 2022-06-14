@@ -13,7 +13,7 @@ def main(
     db = getattr(client, db_name)
     col = getattr(db, collection_name)
     print(dir(col))
-    count = col.count()
+    count = col.count_documents()
     print(F"{count} documents in {db_name}.{collection_name}")
 
 if __name__ == "__main__":
