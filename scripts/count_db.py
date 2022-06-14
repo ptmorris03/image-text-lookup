@@ -12,7 +12,7 @@ def main(
     client = MongoClient(F"{host}:{port}")
     db = getattr(client, db_name)
     result = db.runCommand({
-        count: collection_name
+        "count": collection_name
     })
     print(F"{result['n']} documents in {db_name}.{collection_name}")
 
