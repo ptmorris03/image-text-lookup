@@ -22,9 +22,11 @@ def parse_comment(comment):
 
 def insert_comments(db, comments):
     comments = filter(filter_comment, comments)
-    comments = map(parse_comment, comments)
-    return db.comments.insert_many(comments, ordered=False)
-
+    comments = list(map(parse_comment, comments))
+    try:
+        return db.comments.insert_many(comments, ordered=False)
+    except pymongo.errors.InvalidOperation:
+        return []
 
 def main(
     file: Path,
