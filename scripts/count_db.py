@@ -12,10 +12,10 @@ def main(
     client = MongoClient(F"{host}:{port}")
     db = getattr(client, db_name)
     col = getattr(db, collection_name)
-    count = col.count_documents(filter={})
+    count = col.count_documents({})
     print(F"{count} documents in {db_name}.{collection_name}")
 
-    result = col.find_one(filter={})
+    result = col.find_one({})
     print(result)
 
 if __name__ == "__main__":
