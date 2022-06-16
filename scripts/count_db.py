@@ -15,8 +15,8 @@ def main(
     count = col.count_documents({})
     print(F"{count} documents in {db_name}.{collection_name}")
 
-    result = col.find({}).limit(10)
-    print(dir(result))
+    result = list(col.find({}).limit(10))
+    print(result)
 
 if __name__ == "__main__":
     typer.run(main)
