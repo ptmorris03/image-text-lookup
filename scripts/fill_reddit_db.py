@@ -9,7 +9,7 @@ from pathlib import Path
 
 skip_text = ['[removed]', '[deleted]']
 def filter_comment(comment):
-    return comment['body'] in skip_text
+    return not comment['body'] in skip_text
 
 
 def parse_comment(comment):
