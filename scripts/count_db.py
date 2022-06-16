@@ -12,9 +12,11 @@ def main(
     client = MongoClient(F"{host}:{port}")
     db = getattr(client, db_name)
     col = getattr(db, collection_name)
-    print(dir(col))
     count = col.count_documents(filter={})
     print(F"{count} documents in {db_name}.{collection_name}")
+
+    result = col.find_one(filter={})
+    print(result)
 
 if __name__ == "__main__":
     typer.run(main)
